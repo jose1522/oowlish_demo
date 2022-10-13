@@ -3,6 +3,7 @@ import pytest
 
 @pytest.fixture(scope="module")
 def youtube_transcript():
+    """Sample raw transcript from youtube"""
     return [
         {
             "text": "Grand Potter has hit the ground running",
@@ -19,5 +20,5 @@ def youtube_transcript():
             "text": "than Thomas tickle so on the board in",
             "start": 5.46,
             "duration": 2.94,
-        }
+        },
     ]

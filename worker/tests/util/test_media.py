@@ -7,6 +7,7 @@ from util.media import Youtube2Text
 
 
 class TestYoutube:
+    """Tests Youtube2Text logic"""
     @pytest.fixture(
         scope="class",
         params=[
@@ -16,12 +17,13 @@ class TestYoutube:
         ids=["single param", "many params"],
     )
     def extractor(self, request):
+        """Instance of Youtube2Text"""
         return Youtube2Text(request.param)
 
     def test_digest_path(self, extractor):
         """Checks that the class is able to extract the video id correctly"""
         expected = "-JAFb2bYJSs"
-        actual = extractor._digest_path()
+        actual = extractor._digest_path()  # pylint: disable=protected-access
         assert actual == expected
 
     @mock.patch("util.media.YouTubeTranscriptApi")

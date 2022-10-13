@@ -1,5 +1,5 @@
 from abc import ABC
-from typing import Any, Optional
+from typing import Any, List, Optional
 from urllib.parse import parse_qs
 from urllib.parse import urlparse
 
@@ -8,6 +8,7 @@ from youtube_transcript_api import YouTubeTranscriptApi
 
 
 class BaseMedia2Text(ABC):
+    """Base class for all media to 2 extractors"""
     def __init__(self, path: str):
         self.path = path
 
@@ -23,7 +24,6 @@ class BaseMedia2Text(ABC):
         Returns:
             str
         """
-        pass
 
     def __call__(self):
         """
@@ -33,12 +33,13 @@ class BaseMedia2Text(ABC):
 
 
 class Youtube2Text(BaseMedia2Text):
+    """Extracts transcripts from youtube videos"""
     pattern = r"v=(.+)&?"
     id_param = "v"
     target_languages = ["en"]
 
     def __init__(self, path: AnyHttpUrl):
-        super(Youtube2Text, self).__init__(path=path)
+        super().__init__(path=path)
 
     def _digest_path(self) -> Optional[str]:
         # Extract query param "v" from url and return None if not present

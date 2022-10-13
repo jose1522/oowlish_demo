@@ -5,6 +5,7 @@ from pydantic import AnyHttpUrl, BaseSettings, validator
 
 
 class Settings(BaseSettings):
+    """Stores the settings for the worker"""
     PROJECT_NAME: str
     API_V1_STR: str = "/api/v1"
     SECRET_KEY: str = secrets.token_urlsafe(32)
@@ -20,14 +21,17 @@ class Settings(BaseSettings):
     ]
 
     @validator("BACKEND_CORS_ORIGINS", pre=True)
+    # pylint: disable=no-self-argument
     def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[List[str], str]:
-        if isinstance(v, str) and not v.startswith("["):
+        """Checks that origins are well-formed"""
+        if isinstance(v, str) and not v.startswith("["):  # pylint: disable=no-else-return
             return [i.strip() for i in v.split(",")]
         elif isinstance(v, (list, str)):
             return v
         raise ValueError(v)
 
     class Config:
+        """Additional configurations for pydantic"""
         case_sensitive = True
 
 
