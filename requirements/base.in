@@ -1,1 +1,4 @@
-transformers==4.23.0
+transformers[torch]==4.23.0
+fastapi==0.85.0
+pydantic
+youtube-transcript-api<1.0.0
