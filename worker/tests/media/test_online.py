@@ -3,11 +3,12 @@ from unittest import mock
 
 import pytest
 
-from util.media import Youtube2Text
+from media.online import Youtube2Text
 
 
 class TestYoutube:
     """Tests Youtube2Text logic"""
+
     @pytest.fixture(
         scope="class",
         params=[
@@ -23,10 +24,10 @@ class TestYoutube:
     def test_digest_path(self, extractor):
         """Checks that the class is able to extract the video id correctly"""
         expected = "-JAFb2bYJSs"
-        actual = extractor._digest_path()  # pylint: disable=protected-access
+        actual = extractor._digest_source()  # pylint: disable=protected-access
         assert actual == expected
 
-    @mock.patch("util.media.YouTubeTranscriptApi")
+    @mock.patch("media.media.YouTubeTranscriptApi")
     def test_extract_text(
         self, mock_youtube_api: mock.MagicMock, youtube_transcript, extractor
     ):
