@@ -3,3 +3,4 @@ pytest
 black
 pylint
 mypy<=1.0.0
+flake8
