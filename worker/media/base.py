@@ -4,6 +4,7 @@ from typing import Any
 
 class BaseMedia2Text(ABC):
     """Base class for all media to 2 extractors"""
+
     def __init__(self, source: str):
         self.source = source
 

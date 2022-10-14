@@ -9,6 +9,7 @@ from media.base import BaseMedia2Text
 
 class Youtube2Text(BaseMedia2Text):
     """Extracts transcripts from youtube videos"""
+
     pattern = r"v=(.+)&?"
     id_param = "v"
     target_languages = ["en"]
@@ -23,6 +24,8 @@ class Youtube2Text(BaseMedia2Text):
         return captured_value
 
     def extract_text(self) -> str:
+        """Digests the source and extracts a transcript of the media
+        as a string."""
         video_id = self._digest_source()
         # Get the video transcript from Youtube
         transcript = YouTubeTranscriptApi.get_transcript(

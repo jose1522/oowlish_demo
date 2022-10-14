@@ -9,21 +9,25 @@ from core.config import settings
 
 @pytest.fixture(scope="module")
 def http_uri() -> str:
+    """Fixture for http uri"""
     return settings.API_V1_STR + "/youtube/"
 
 
 @pytest.fixture(scope="module")
 def ws_uri(http_uri) -> str:
+    """Fixture for websocket uri"""
     return http_uri + "ws"
 
 
 @pytest.fixture(scope="module")
 def payload() -> Dict[str, str]:
+    """Fixture for correct payload to be sent to endpoints"""
     return {"url": "https://www.youtube.com/watch?v=-JAFb2bYJSs"}
 
 
 @pytest.fixture(scope="module")
 def bad_payload() -> Dict[str, bool]:
+    """Fixture for incorrect payload to be sent to endpoints"""
     return {"url": False}
 
 

@@ -28,12 +28,17 @@ async def websocket_endpoint(websocket: WebSocket):
         while True:
             data = await websocket.receive_text()
 
-            data = media.OnlineSource(**json.loads(data))
+            parsed_data = media.OnlineSource(
+                **json.loads(data)
+            )  # type: media.OnlineSource
             pipeline = TextSummarizerPipeline(
-                summarizer=LongTextSummarizer(), transcriber=Youtube2Text(source=data.url)
+                summarizer=LongTextSummarizer(),
+                transcriber=Youtube2Text(source=parsed_data.url),
             )
             output = {"summary": pipeline.run()}
 
             await websocket.send_text(json.dumps(output))
     except ValidationError as error:
-        await websocket.close(code=status.HTTP_422_UNPROCESSABLE_ENTITY, reason=error.json())
+        await websocket.close(
+            code=status.HTTP_422_UNPROCESSABLE_ENTITY, reason=error.json()
+        )

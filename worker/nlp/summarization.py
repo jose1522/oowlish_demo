@@ -6,6 +6,7 @@ from transformers import pipeline
 
 class BaseSummarizer:
     """Base class of summarization model."""
+
     def __init__(self, **kwargs):
         self.model = None
         self.unused = kwargs
@@ -28,6 +29,7 @@ class BaseSummarizer:
 
 class LongTextSummarizer(BaseSummarizer):
     """Summarization model capable of processing long strings."""
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.model = pipeline(
@@ -42,5 +44,3 @@ class LongTextSummarizer(BaseSummarizer):
             text, max_length=max_length, min_length=min_length, do_sample=False
         )
         return result.get("summary_text")
-
-
