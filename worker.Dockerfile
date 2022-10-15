@@ -7,4 +7,6 @@ FROM python:3.9.15-bullseye
 ADD ./worker /worker
 COPY --from=requirements-stage /tmp/base.txt requirements.txt
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
-CMD ["uvicorn", "worker.main:app", "--port", "8080"]
+WORKDIR /worker
+EXPOSE 8080/tcp
+CMD ["uvicorn", "main:app", "--port", "8080", "--host", "127.0.0.1"]

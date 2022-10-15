@@ -1,10 +1,9 @@
 from typing import Dict
 
 import pytest
+from core.config import settings
 from fastapi.testclient import TestClient
 from starlette.websockets import WebSocketDisconnect
-
-from worker.core.config import settings
 
 
 @pytest.fixture(scope="module")

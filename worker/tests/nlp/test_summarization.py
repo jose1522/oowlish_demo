@@ -1,9 +1,8 @@
 import gc
 
 import pytest
+from nlp.summarization import LongTextSummarizer
 from torch.cuda import empty_cache
-
-from worker.nlp.summarization import LongTextSummarizer
 
 
 @pytest.fixture(scope="module")

@@ -1,5 +1,5 @@
-from worker.media.base import BaseMedia2Text
-from worker.nlp.summarization import BaseSummarizer
+from media.base import BaseMedia2Text
+from nlp.summarization import BaseSummarizer
 
 
 class TextSummarizerPipeline:
