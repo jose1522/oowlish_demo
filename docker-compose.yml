@@ -1,9 +1,13 @@
-version: '3.8'
+version: '3.9'
 services:
   summarizer-api:
     build:
       dockerfile: worker.Dockerfile
       context: ./
+    image: jose1522/media-summarizer-api:latest
+    container_name: summarizer-api
     restart: unless-stopped
+    expose:
+      - "80"
     ports:
-      - "8080:8080"
+      - "8080:80"

@@ -8,5 +8,4 @@ ADD ./worker /worker
 COPY --from=requirements-stage /tmp/base.txt requirements.txt
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 WORKDIR /worker
-EXPOSE 8080/tcp
-CMD ["uvicorn", "main:app", "--port", "8080", "--host", "127.0.0.1"]
+CMD ["uvicorn", "main:app", "--port", "80", "--host", "0.0.0.0"]

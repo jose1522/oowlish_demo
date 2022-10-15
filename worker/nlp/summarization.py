@@ -1,4 +1,5 @@
 from functools import lru_cache
+from pathlib import Path
 
 import torch
 from transformers import pipeline
@@ -10,6 +11,12 @@ class BaseSummarizer:
     def __init__(self, **kwargs):
         self.model = None
         self.unused = kwargs
+        self.assets_folder = Path().joinpath("nlp/assets").absolute()
+        self.model_name = ""
+
+    @property
+    def model_path(self):
+        return str(self.assets_folder.joinpath(self.model_name))
 
     def summarize(self, text: str, max_length: int = 300, min_length: int = 300) -> str:
         """
@@ -32,9 +39,10 @@ class LongTextSummarizer(BaseSummarizer):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.model_name = "long-text-summarizer"
         self.model = pipeline(
             "summarization",
-            "pszemraj/long-t5-tglobal-base-16384-book-summary",
+            self.model_path,
             device=0 if torch.cuda.is_available() else -1,
         )
 
