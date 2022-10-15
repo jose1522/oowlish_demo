@@ -4,7 +4,7 @@ from urllib.parse import urlparse, parse_qs
 from pydantic import AnyHttpUrl
 from youtube_transcript_api import YouTubeTranscriptApi
 
-from media.base import BaseMedia2Text
+from worker.media.base import BaseMedia2Text
 
 
 class Youtube2Text(BaseMedia2Text):

@@ -4,7 +4,7 @@ import pytest
 from fastapi.testclient import TestClient
 from starlette.websockets import WebSocketDisconnect
 
-from core.config import settings
+from worker.core.config import settings
 
 
 @pytest.fixture(scope="module")

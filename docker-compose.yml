@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  summarizer-api:
+    build:
+      dockerfile: worker.Dockerfile
+      context: ./
+    image: summarizer-api:latest
+    container_name: summarizer-api
+    restart: unless-stopped
+    command: tail -F anything
+    ports:
+      - 8080:8080

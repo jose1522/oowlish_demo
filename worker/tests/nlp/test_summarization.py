@@ -3,7 +3,7 @@ import gc
 import pytest
 from torch.cuda import empty_cache
 
-from nlp.summarization import LongTextSummarizer
+from worker.nlp.summarization import LongTextSummarizer
 
 
 @pytest.fixture(scope="module")

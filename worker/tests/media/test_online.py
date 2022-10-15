@@ -3,7 +3,7 @@ from unittest import mock
 
 import pytest
 
-from media.online import Youtube2Text
+from worker.media.online import Youtube2Text
 
 
 class TestYoutube:

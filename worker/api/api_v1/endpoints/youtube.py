@@ -3,10 +3,10 @@ import json
 from fastapi import APIRouter, WebSocket, status
 from pydantic import ValidationError
 
-from core.pipeline import TextSummarizerPipeline
-from media.online import Youtube2Text
-from nlp.summarization import LongTextSummarizer
-from schemas import media, summary
+from worker.core.pipeline import TextSummarizerPipeline
+from worker.media.online import Youtube2Text
+from worker.nlp.summarization import LongTextSummarizer
+from worker.schemas import media, summary
 
 router = APIRouter()
 
