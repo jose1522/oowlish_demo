@@ -2,7 +2,6 @@ import hashlib
 from unittest import mock
 
 import pytest
-
 from media.online import Youtube2Text
 
 
