@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     DEFAULT_PORT: int = 5000
     PROJECT_VERSION: str = "1.0.0"
     DOCS_URL: str = "/docs"
+    ENABLE_MPS: bool = False
 
 
 settings = Settings()

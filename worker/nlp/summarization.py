@@ -4,19 +4,40 @@ from pathlib import Path
 import torch
 from transformers import pipeline
 
+from core.config import settings
+
 
 class BaseSummarizer:
     """Base class of summarization model."""
+    TASK = "summarization"
+    ASSETS_FOLDER = Path().joinpath("nlp/assets").absolute()
 
-    def __init__(self, **kwargs):
+    def __init__(self, model_name: str = None, **kwargs):
         self.model = None
         self.unused = kwargs
-        self.assets_folder = Path().joinpath("nlp/assets").absolute()
-        self.model_name = ""
+        self.model_name = model_name
+        self._generate_model()
 
     @property
     def model_path(self):
-        return str(self.assets_folder.joinpath(self.model_name))
+        return str(self.ASSETS_FOLDER.joinpath(self.model_name))
+
+    @property
+    def device(self):
+        if torch.cuda.is_available():
+            return "cuda"
+        elif settings.ENABLE_MPS and torch.backends.mps.is_available():
+            return "mps"
+        else:
+            return "cpu"
+
+    def _generate_model(self) -> None:
+        """Generates a model using a pipeline"""
+        self.model = pipeline(
+            self.TASK,
+            self.model_path,
+            device=self.device,
+        )
 
     def summarize(self, text: str, max_length: int = 300, min_length: int = 300) -> str:
         """
@@ -37,14 +58,8 @@ class BaseSummarizer:
 class LongTextSummarizer(BaseSummarizer):
     """Summarization model capable of processing long strings."""
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.model_name = "long-text-summarizer"
-        self.model = pipeline(
-            "summarization",
-            self.model_path,
-            device=0 if torch.cuda.is_available() else -1,
-        )
+    def __init__(self, model_name: str = "long-text-summarizer", **kwargs):
+        super().__init__(model_name=model_name, **kwargs)
 
     @lru_cache(maxsize=32)
     def summarize(self, text: str, max_length: int = 300, min_length: int = 300) -> str:
