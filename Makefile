@@ -1,6 +1,6 @@
 run: update-weights start-worker
 update-weights:
-	source scripts/downdload_model_weights.sh
+	/bin/bash scripts/download_model_weights.sh
 start-worker:
 	docker compose up -d --build summarizer-api
 remove:

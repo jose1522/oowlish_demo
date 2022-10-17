@@ -10,7 +10,7 @@ from core.config import settings
 class BaseSummarizer:
     """Base class of summarization model."""
     TASK = "summarization"
-    ASSETS_FOLDER = Path().joinpath("nlp/assets").absolute()
+    ASSETS_FOLDER = Path(__file__).parent.joinpath("assets")
 
     def __init__(self, model_name: str = None, **kwargs):
         self.model = None

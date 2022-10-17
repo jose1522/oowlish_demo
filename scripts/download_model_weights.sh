@@ -1,4 +1,4 @@
-OUTPUT_FOLDER=../worker/nlp/assets/long-text-summarizer/
+OUTPUT_FOLDER=worker/nlp/assets/long-text-summarizer/
 FILE_NAME=pytorch_model.bin
 OUTPUT_PATH=$OUTPUT_FOLDER$FILE_NAME
 SOURCE=https://huggingface.co/pszemraj/long-t5-tglobal-base-16384-book-summary/resolve/main/pytorch_model.bin
