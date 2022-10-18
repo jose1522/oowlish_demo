@@ -225,3 +225,6 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+worker/nlp/assets/long-text-summarizer/pytorch_model.bin
+
+/app/node_modules/*

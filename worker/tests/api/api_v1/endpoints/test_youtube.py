@@ -1,9 +1,10 @@
 from typing import Dict
 
 import pytest
-from core.config import settings
 from fastapi.testclient import TestClient
 from starlette.websockets import WebSocketDisconnect
+
+from core.config import settings
 
 
 @pytest.fixture(scope="module")
@@ -46,7 +47,7 @@ def test_websocket_endpoint_error(
         websocket.send_json(bad_payload)
         with pytest.raises(WebSocketDisconnect) as e:
             websocket.receive_json()
-        assert e.value.code == 422
+        assert e.value.code == 1007
 
 
 def test_http_endpoint(mock_nlp_inference, client: TestClient, http_uri, payload):

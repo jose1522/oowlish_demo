@@ -36,6 +36,10 @@ click==8.1.3
     #   -r dev.txt
     #   black
     #   uvicorn
+coverage[toml]==6.5.0
+    # via
+    #   -r dev.txt
+    #   pytest-cov
 dill==0.3.5.1
     # via
     #   -r dev.txt
@@ -147,6 +151,10 @@ pyparsing==3.0.9
     #   -r dev.txt
     #   packaging
 pytest==7.1.3
+    # via
+    #   -r dev.txt
+    #   pytest-cov
+pytest-cov==4.0.0
     # via -r dev.txt
 python-dotenv==0.21.0
     # via
@@ -191,6 +199,7 @@ tomli==2.0.1
     # via
     #   -r dev.txt
     #   black
+    #   coverage
     #   mypy
     #   pylint
     #   pytest

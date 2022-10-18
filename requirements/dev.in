@@ -1,5 +1,6 @@
 -r base.txt
 pytest
+pytest-cov
 black
 pylint
 mypy<=1.0.0

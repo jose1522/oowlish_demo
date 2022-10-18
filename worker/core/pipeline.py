@@ -15,7 +15,7 @@ class TextSummarizerPipeline:
         self.summarizer = summarizer
         self.transcriber = transcriber
 
-    def run(self) -> str:
+    def run(self, **kwargs) -> str:
         """Executes the necessary steps to extract a text summary from some type of media."""
         transcript = self.transcriber.extract_text()
-        return self.summarizer(transcript)
+        return self.summarizer(transcript, **kwargs)

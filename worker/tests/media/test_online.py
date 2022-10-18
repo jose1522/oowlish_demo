@@ -2,6 +2,7 @@ import hashlib
 from unittest import mock
 
 import pytest
+
 from media.online import Youtube2Text
 
 
@@ -26,7 +27,7 @@ class TestYoutube:
         actual = extractor._digest_source()  # pylint: disable=protected-access
         assert actual == expected
 
-    @mock.patch("media.media.YouTubeTranscriptApi")
+    @mock.patch("media.online.YouTubeTranscriptApi")
     def test_extract_text(
         self, mock_youtube_api: mock.MagicMock, youtube_transcript, extractor
     ):
