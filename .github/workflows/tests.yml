@@ -31,6 +31,7 @@ jobs:
           pylint worker --errors-only
       - name: Test with pytest
         run: |
+          make update-weights
           cd worker
           python -m pytest . --cov ../ --cov-report=xml
       - name: Upload coverage reports to Codecov with GitHub Action
