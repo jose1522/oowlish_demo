@@ -9,6 +9,7 @@ from core.config import settings
 
 class BaseSummarizer:
     """Base class of summarization model."""
+
     TASK = "summarization"
     ASSETS_FOLDER = Path(__file__).parent.joinpath("assets")
 
@@ -39,7 +40,7 @@ class BaseSummarizer:
             device=self.device,
         )
 
-    def summarize(self, text: str, max_length: int = 300, min_length: int = 300) -> str:
+    def summarize(self, text: str, max_length: int = 300, min_length: int = 30) -> str:
         """
         Summarizes a string of any length.
         Args:
@@ -62,8 +63,10 @@ class LongTextSummarizer(BaseSummarizer):
         super().__init__(model_name=model_name, **kwargs)
 
     @lru_cache(maxsize=32)
-    def summarize(self, text: str, max_length: int = 300, min_length: int = 300) -> str:
+    def summarize(self, text: str, max_length: int = 300, min_length: int = 30) -> str:
         result = self.model(
             text, max_length=max_length, min_length=min_length, do_sample=False
         )
+        if isinstance(result, list):
+            result = result[0]
         return result.get("summary_text")
