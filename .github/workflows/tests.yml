@@ -40,8 +40,3 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./worker/.coverage,./worker/coverage.xml
           fail_ci_if_error: true
-      - name: Commit coverage report
-        run: |
-          git add ./worker/.coverage ./worker/coverage.xml
-          git commit -m 'step3: add project status check target'
-          git push origin step3
