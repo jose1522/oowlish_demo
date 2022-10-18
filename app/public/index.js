@@ -1,4 +1,4 @@
-const url = "ws://127.0.0.1:5000/api/v1/youtube/ws";
+const url = "ws://localhost:8081/api/v1/youtube/ws";
 const output = document.getElementById('summaryBox');
 const loader = document.getElementById('loading');
 var socket = new WebSocket(url);

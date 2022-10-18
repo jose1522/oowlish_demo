@@ -1,7 +1,8 @@
 import json
 
-from fastapi import APIRouter, WebSocket, status
+from fastapi import APIRouter, WebSocket
 from pydantic import ValidationError
+from youtube_transcript_api import TranscriptsDisabled
 
 from core import logger
 from core.pipeline import TextSummarizerPipeline
@@ -45,7 +46,11 @@ async def websocket_endpoint(websocket: WebSocket):
                 )
             }
             await websocket.send_json(output)
+    # See websocket error codes:
+    # https://www.iana.org/assignments/websocket/websocket.xhtml
     except ValidationError as error:
-        await websocket.close(
-            code=status.HTTP_422_UNPROCESSABLE_ENTITY, reason=error.json()
-        )
+        await websocket.close(code=1007, reason="invalid payload structure")
+        logger.error(error.json())
+    except TranscriptsDisabled as error:
+        await websocket.close(code=1007, reason="could not get transcript for video")
+        logger.error(str(error))

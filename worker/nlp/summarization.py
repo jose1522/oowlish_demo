@@ -21,16 +21,17 @@ class BaseSummarizer:
 
     @property
     def model_path(self):
+        """Returns the path where the assets are"""
         return str(self.ASSETS_FOLDER.joinpath(self.model_name))
 
     @property
     def device(self):
+        """Returns the appropriate device to use in the pipeline"""
         if torch.cuda.is_available():
             return "cuda"
         elif settings.ENABLE_MPS and torch.backends.mps.is_available():
             return "mps"
-        else:
-            return "cpu"
+        return "cpu"
 
     def _generate_model(self) -> None:
         """Generates a model using a pipeline"""

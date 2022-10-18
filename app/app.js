@@ -4,7 +4,7 @@ const Logger = require('js-logger');
 
 // Server stuff
 const app = express();
-const port = process.env.PORT || 5050;
+const port = process.env.PORT || 80;
 app.set('view engine', 'ejs');
 
 // Logger stuff

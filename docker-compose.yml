@@ -10,4 +10,15 @@ services:
     expose:
       - "80"
     ports:
+      - "8081:80"
+  summarizer-ui:
+    build:
+      dockerfile: app.Dockerfile
+      context: ./
+    image: jose1522/media-summarizer-ui:latest
+    container_name: summarizer-ui
+    restart: unless-stopped
+    expose:
+      - "80"
+    ports:
       - "8080:80"
