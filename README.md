@@ -2,4 +2,5 @@
 [![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
 [![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/PyCQA/pylint)
 [![python](https://img.shields.io/badge/Python-3.9-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
+[![codecov](https://codecov.io/gh/jose1522/oowlish_demo/branch/main/graph/badge.svg?token=9YI6G4WTSL)](https://codecov.io/gh/jose1522/oowlish_demo)
 
